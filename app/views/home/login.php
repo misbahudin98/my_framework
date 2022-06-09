@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?= $data['judul']?></title>
+  <title><?= $data['judul'] ?></title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= BASEURL ?>css/adminlte/adminlte.min.css" >
-  <link rel="stylesheet" href="<?= BASEURL ?>css/login/login.css" >
+  <link rel="stylesheet" href="<?= BASEURL ?>css/adminlte/adminlte.min.css">
+  <link rel="stylesheet" href="<?= BASEURL ?>css/login/login.css">
 
 
 </head>
@@ -30,9 +30,10 @@
 
               <p class="login-card-description">Sign into your account</p>
               <form action="<?= BASEURL ?>home/do_login" method="post">
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
                 <div class="form-group">
                   <label class="sr-only">Username</label>
-                  <input type="text" name="username"  class="form-control" placeholder="Username" autoComplete='off'>
+                  <input type="text" name="username" class="form-control" placeholder="Username" autoComplete='off'>
                 </div>
                 <div class="form-group mb-4">
                   <label for="password" class="sr-only">Password</label>

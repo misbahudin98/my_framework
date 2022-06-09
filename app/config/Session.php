@@ -8,7 +8,8 @@ final class Session
     }
 }
 
-final class SessionManager extends Controller
+
+ class SessionManager extends Controller
 {
 
     private  static  string   $SECRET_KEY = "fjnljaicnuwe8nuwvo8nfulvieufksvfukenkfnelvnuf";
@@ -26,7 +27,7 @@ final class SessionManager extends Controller
             $hasil['session'] = Security::pass_hash(uniqid());
 
             $data->model('User_model')->set_session($hasil);
-            $jwt = self::jwt_encode($hasil,$hasil['session']);
+            $jwt = self::jwt_encode($hasil, $hasil['session']);
 
             self::set_cookies($jwt);
 
@@ -45,22 +46,20 @@ final class SessionManager extends Controller
                 $payload = self::jwt_decode();
                 if (time() - $payload['last'] < self::$cookie_expired) {
                     $payload['last'] = time();
-                    $jwt =  self::jwt_encode($payload,$payload['id']);
+                    $jwt =  self::jwt_encode($payload, $payload['id']);
 
                     self::set_cookies($jwt);
-                    return new Session(name: $payload['nama'], role: $payload['role'],last: time());
-
+                    return new Session(name: $payload['nama'], role: $payload['role'], last: time());
                 } else {
                     self::logout();
                 }
             } catch (Exception  $exception) {
                 // throw new Exception("User is not login");
-                // header("location:".BASEURL."home");
-
+                header("location:" . BASEURL);
             }
         } else {
 
-            header("location:".BASEURL."home");
+            header("location:" . BASEURL);
         }
     }
 
@@ -78,14 +77,13 @@ final class SessionManager extends Controller
         try {
             $payload = self::jwt_decode();
             $data = new Controller;
-            $var = ['id'=>$payload['id'],'nama'=>$payload['nama']];
+            $var = ['id' => $payload['id'], 'nama' => $payload['nama']];
             $var = $data->model('User_model')->delete_session($var);
             setcookie(self::$cookie_name, '', $option);
             header("Location:" . BASEURL);
         } catch (exception $exception) {
-            header("Location:" . BASEURL."home/logout");
+            header("Location:" . BASEURL . "home/logout");
         }
-
     }
 
     private static function set_cookies(string $value)
@@ -108,7 +106,7 @@ final class SessionManager extends Controller
         return explode("/", BASEURL);
     }
 
-    private static function jwt_encode(array $hasil,$id  )
+    private static function jwt_encode(array $hasil, $id)
     {
         require_once "../app/libraries/vendor/autoload.php";
 
@@ -129,5 +127,28 @@ final class SessionManager extends Controller
 
         $payload =  \Firebase\JWT\JWT::decode($jwt, SessionManager::$SECRET_KEY, ['HS256']);
         return (array) $payload;
+    }
+
+    protected static function  start()
+    {
+        $url = explode("/", BASEURL);
+        session_start(
+            [
+                'use_strict_mode' => true,
+                'cookie_domain' => $url[2],
+                'cookie_secure' => true,
+                'cookie_httponly' => true,
+                'cookie_samesite' => 'strict'
+            ]
+        );
+    }
+
+    public static function token_form()
+    {
+        // //token form
+        $token = bin2hex(random_bytes(35));
+        self::start();
+        $_SESSION['token'] = $token;
+        $_SESSION['token_time'] = time();
     }
 }

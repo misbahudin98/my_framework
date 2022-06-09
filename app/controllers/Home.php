@@ -12,30 +12,38 @@ class Home extends Controller
   public function login()
   {
     $data['judul'] = $this->judul;
+    SessionManager::token_form();
     $this->view('home/login', $data);
   }
 
   public function do_login()
   {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-      $data['judul'] = $this->judul;
+
+      $csrf = Security::csrf_token();
+
       $login =  SessionManager::login();
-      if ($login === true ) {
-        header("Location:" . BASEURL . "about");
+      if ($login === true && $csrf === 1) {
+
+        $data['judul'] = $this->judul;
+        $data['santri'] = $this->model('User_model')->getAllSantri();
+
+        $this->view('templates/header',$data);
+        $this->view('about/santri',$data);
+        $this->view('templates/footer');
         exit(0);
       } else {
         flasher::setFlash('gagal', 'periksa kembali username dan password !', 'danger');
-        header("Location:" . BASEURL . "home/login");
+        self::login();
       }
-    }else {
+    } else {
       flasher::setFlash('gagal', 'periksa kembali username dan password !', 'danger');
-      header("Location:" . BASEURL . "home");
+      self::login();
     }
-
   }
 
   public function logout()
   {
-     SessionManager::logout();
+    SessionManager::logout();
   }
 }
