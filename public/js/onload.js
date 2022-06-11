@@ -1,4 +1,5 @@
 $(function () {
+    // auto logout
     var inactivityTime = function () {
         var time;
         window.onload = resetTimer;
@@ -35,9 +36,8 @@ $(function () {
             // 1000 milliseconds = 1 second
         }
     };
-
-
     inactivityTime();
+
 
 
 });

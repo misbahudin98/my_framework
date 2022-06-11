@@ -9,7 +9,7 @@ final class Session
 }
 
 
- class SessionManager extends Controller
+class SessionManager extends Controller
 {
 
     private  static  string   $SECRET_KEY = "fjnljaicnuwe8nuwvo8nfulvieufksvfukenkfnelvnuf";
@@ -129,18 +129,20 @@ final class Session
         return (array) $payload;
     }
 
-    protected static function  start()
+    protected static function start()
     {
         $url = explode("/", BASEURL);
-        session_start(
-            [
-                'use_strict_mode' => true,
-                'cookie_domain' => $url[2],
-                'cookie_secure' => true,
-                'cookie_httponly' => true,
-                'cookie_samesite' => 'strict'
-            ]
-        );
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start(
+                [
+                    'use_strict_mode' => true,
+                    'cookie_domain' => $url[2],
+                    'cookie_secure' => true,
+                    'cookie_httponly' => true,
+                    'cookie_samesite' => 'strict'
+                ]
+            );
+        }
     }
 
     public static function token_form()

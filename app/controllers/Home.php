@@ -33,11 +33,11 @@ class Home extends Controller
         $this->view('templates/footer');
         exit(0);
       } else {
-        flasher::setFlash('gagal', 'periksa kembali username dan password !', 'danger');
+        flasher::setFlash('gagal', 'error');
         self::login();
       }
     } else {
-      flasher::setFlash('gagal', 'periksa kembali username dan password !', 'danger');
+      flasher::setFlash('gagal',  'error');
       self::login();
     }
   }
