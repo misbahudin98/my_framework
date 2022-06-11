@@ -18,11 +18,13 @@ class About extends Controller{
     {
 
         $data['judul'] = $this->judul;
+        $data['table'] = true;
+        $data['button'] = true;
         $data['santri'] = $this->model('User_model')->getAllSantri();
 
         $this->view('templates/header',$data);
         $this->view('about/santri',$data);
-        $this->view('templates/footer');
+        $this->view('templates/footer',$data);
     }
     public function detail($id)
     {

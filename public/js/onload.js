@@ -32,7 +32,7 @@ $(function () {
 
         function resetTimer() {
             clearTimeout(time);
-            time = setTimeout(logout, 5 * 1000 * 1)
+            time = setTimeout(logout, 5 * 1000 * 60 )
             // 1000 milliseconds = 1 second
         }
     };

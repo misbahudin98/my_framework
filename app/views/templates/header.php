@@ -1,25 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= BASEURL ?>css/bootstrap/bootstrap.min.css" >
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="<?= BASEURL ?>css/adminlte/adminlte.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <?php if (isset($data['table'])) { ?>
+    <link rel="stylesheet" href="<?= BASEURL ?>css/dataTables-bs4/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>css/dataTables-responsive/responsive.bootstrap4.min.css">
+  <?php } ?>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<?= BASEURL ?>">PHPMVC</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link active" href="<?= BASEURL ?>">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="<?= BASEURL ?>about/santri">Santri</a>
-      <a class="nav-link" href="<?= BASEURL ?>about">About</a>
 
-    </div>
-  </div>
-</nav>
+<body class="hold-transition sidebar-mini ">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+
+      </ul>
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="admin.php" class="brand-link">
+        <img src="<?= BASEURL ?>img/landing-page/o.png" alt="AdminLTE Logo" style="opacity: .8;  width: 95%; height: auto;">
+
+
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item ">
+              <!-- menu-open -->
+              <a href="index.php" class="nav-link">
+                <!-- active -->
+                <i class="nav-icon fa-solid fa-gauge-high"></i>
+                <p class="text">Dashboard</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">

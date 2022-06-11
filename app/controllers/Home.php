@@ -24,13 +24,7 @@ class Home extends Controller
 
       $login =  SessionManager::login();
       if ($login === true && $csrf === 1) {
-
-        $data['judul'] = $this->judul;
-        $data['santri'] = $this->model('User_model')->getAllSantri();
-
-        $this->view('templates/header',$data);
-        $this->view('about/santri',$data);
-        $this->view('templates/footer');
+        header("Location:" . BASEURL."about");
         exit(0);
       } else {
         flasher::setFlash('gagal', 'error');

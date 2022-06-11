@@ -14,7 +14,7 @@ class SessionManager extends Controller
 
     private  static  string   $SECRET_KEY = "fjnljaicnuwe8nuwvo8nfulvieufksvfukenkfnelvnuf";
     private static $cookie_name = 'X-PZN-SESSION';
-    private static $cookie_expired =  10;
+    private static $cookie_expired =  5*60;
 
     public static function login()
     {
