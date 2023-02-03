@@ -26,10 +26,10 @@
               <div class="brand-wrapper">
                 <img src="<?= BASEURL ?>img/logo.svg" alt="logo" class="logo">
               </div>
-              <?php flasher::flash() ?>
+
               <p class="login-card-description">Sign into your account</p>
               <form action="<?= BASEURL ?>home/do_login" method="post">
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                <input type="hidden" name="token" value="">
                 <div class="form-group">
                   <label class="sr-only">Username</label>
                   <input type="text" name="username" class="form-control" placeholder="Username" autoComplete='off'>
@@ -74,8 +74,8 @@
       </div> -->
     </div>
   </main>
-
-  <script src="<?= BASEURL ?>js/jquery_3.6.0/jquery.js"></script>
+  <?= $data['pesan']?>
+  <script src="<?= BASEURL ?>js/jquery/jquery-3.3.1.min.js"></script>
   <script src="<?= BASEURL ?>js/notyf/notyf.min.js"></script>
   <script src="<?= BASEURL ?>js/flasher.js"></script>
   <script src="<?= BASEURL ?>js/adminlte/adminlte.min.js"></script>

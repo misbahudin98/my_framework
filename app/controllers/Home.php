@@ -5,34 +5,31 @@ class Home extends Controller
   public function index()
   {
     $data['judul'] = $this->judul;
-
     $this->view('home/index', $data);
   }
 
-  public function login()
+  public function login($pesan ="",$tipe = "")
   {
     $data['judul'] = $this->judul;
-    SessionManager::token_form();
+    if (!empty($pesan) && !empty($tipe) ) {        
+      $data['pesan'] = flasher::setFlash($pesan, $tipe);
+   }
     $this->view('home/login', $data);
   }
 
   public function do_login()
   {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-      $csrf = Security::csrf_token();
-
       $login =  SessionManager::login();
-      if ($login === true && $csrf === 1) {
-        header("Location:" . BASEURL."about");
+      
+      if ($login !== false ) {
+        header("Location:" . BASEURL.$login[0]['akses']);
         exit(0);
       } else {
-        flasher::setFlash('gagal', 'error');
-        self::login();
+        self::login('Periksa Kembali Masukan Anda', 'error');
       }
     } else {
-      flasher::setFlash('gagal',  'error');
-      self::login();
+      self::login('gagal', 'error');
     }
   }
 
