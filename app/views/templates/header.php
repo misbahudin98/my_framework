@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= BASEURL ?>css/adminlte/adminlte.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="<?= BASEURL ?>css/fa/all.min.css">
   <title><?= $data['judul'] ?></title>
   <?php if (isset($data['table'])) { ?>
     <link rel="stylesheet" href="<?= BASEURL ?>css/datatable-bs4/dataTables.bootstrap4.min.css">
@@ -22,11 +22,11 @@
   <?php }
   $session = SessionManager::getCurrentUser() ?>
     
-<link href='<?= BASEURL ?>css/select2/select2.min.css' rel='stylesheet' type='text/css'>
-<link href='<?= BASEURL ?>css/select2/select2.bootstrap.min.css' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="<?= BASEURL ?>css/notyf/notyf.min.css">
-  <style>
+  <link rel="stylesheet" href="<?= BASEURL ?>css/bs-select/bootstrap-select.min.css">
+
+<style>
     .input-group-text {
       width: 33%;
       font-size: xx-small;
